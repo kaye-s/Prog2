@@ -3,5 +3,6 @@
 public class Main {
     public static void main(String[] args) {
         //TEST COMMIT
+        System.out.println("hello world");
     }
 }
