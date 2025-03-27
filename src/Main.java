@@ -3,6 +3,10 @@
 public class Main {
     public static void main(String[] args) {
         //TEST COMMIT
-        System.out.println("hello world");
+        // Declare instruction i
+        // if opcode = 0 --> r-type
+        // if opcode = 000010 --> j-type
+        // else --> i-type
+        // sysout(i.toString())
     }
 }
