@@ -14,8 +14,24 @@ public class ITypeInstruction implements Instruction{
         imm= (int)(hex >> 0) & 0xFFFF;
         rt = (int)(hex >> 16) & 0x1f;
         rs = (int)(hex >> 21) & 0x1f;
-        opcode = (int)(hex >> 26) & 0x1f;
-        mnemonic = null;
+        opcode = (int)(hex >> 26) & 0x3f;
+        if(opcode == 9) {
+            mnemonic = "addiu";
+        } else if(opcode == 12) {
+            mnemonic = "andi";
+        } else if(opcode == 4) {
+            mnemonic = "beq";
+        } else if(opcode == 5) {
+            mnemonic = "bne";
+        } else if(opcode == 15) {
+            mnemonic = "lui";
+        } else if(opcode == 35) {
+            mnemonic = "lw";
+        } else if(opcode == 13) {
+            mnemonic = "ori";
+        } else {
+            mnemonic = "sw";
+        }
     }
 
     //Getters
@@ -38,6 +54,6 @@ public class ITypeInstruction implements Instruction{
     //toString
     @Override
     public String toString() {
-        return mnemonic + " {opcode: " + opcode + ", rs(base): " + rs + ", rt: " + rt + ", immediate(offset): " + imm + "}";
+        return mnemonic + " {opcode: " + String.format("%02x", opcode) + ", rs(base): " + String.format("%02x", rs) + ", rt: " + String.format("%02x", rt) + ", immediate(offset): " + String.format("%04x", imm) + "}";
     }
 }

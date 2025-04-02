@@ -3,7 +3,7 @@ public class Main {
     //GLOBAL FOR TESTING PURPOSES
     public static Instruction result;
     public static void main(String[] args) {
-        long hex = Long.decode("args[0]");
+        long hex = Long.parseLong(args[0], 16);
         // Declare instruction i
         Instruction i;
         // if syscall (inst == 0000000c) --> syscall

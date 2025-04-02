@@ -5,7 +5,7 @@ public class SyscallInstruction implements Instruction{
 
     //Constructor(int hex)
     public SyscallInstruction(long hex) {
-        funct = 0;
+        funct = 0x0c;
         code = 0;
         opcode = (int)(hex >> 26);
         mnemonic = "syscall";
@@ -28,6 +28,6 @@ public class SyscallInstruction implements Instruction{
     //toString
     @Override
     public String toString() {
-        return mnemonic + " {opcode: " + opcode + ", code: " + code + ", funct: " + funct + "}";
+        return mnemonic + " {opcode: " + String.format("%02x", opcode) + ", code: " + String.format("%06x", code) + ", funct: " + String.format("%02x", funct) + "}";
     }
 }

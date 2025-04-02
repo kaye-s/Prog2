@@ -3,6 +3,7 @@ public class RTypeInstruction implements Instruction{
     private final String mnemonic;
     private final int opcode, rs, rt, rd, shmt, funct;
 
+
     //Constructor(int hex)
     //    funct = (hex >> 0) & bx111111;
 //    shmt = (hex >> 6) & bx11111
@@ -19,7 +20,17 @@ public class RTypeInstruction implements Instruction{
         rt = (int)( hex >> 16) & 0x1f;
         rs = (int)( hex >> 21) & 0x1f;
         opcode = (int)(hex >> 26);
-        mnemonic = null;
+        if(funct == 32) {
+            mnemonic = "add";
+        } else if(funct == 36) {
+            mnemonic = "and";
+        } else if(funct == 37) {
+            mnemonic = "or";
+        } else if(funct == 42) {
+            mnemonic = "slt";
+        } else {
+            mnemonic = "sub";
+        }
     }
 
     //Getters - setters not needed because values never change
@@ -48,6 +59,6 @@ public class RTypeInstruction implements Instruction{
     //toString
     @Override
     public String toString() {
-        return mnemonic + " {opcode: " + opcode + ", rs: " + rs + ", rt: " + rt + ", rd: " + rd + ", shmt" + shmt + ", funct: " + funct + "}";
+        return mnemonic + " {opcode: " + String.format("%02x", opcode) + ", rs: " + String.format("%02x", rs) + ", rt: " + String.format("%02x", rt) + ", rd: " + String.format("%02x", rd) + ", shmt: " + String.format("%02x", shmt) + ", funct: " + String.format("%02x", funct) + "}";
     }
 }

@@ -28,6 +28,6 @@ public class JTypeInstruction implements Instruction{
     //toString
     @Override
     public String toString() {
-        return mnemonic + " {opcode: " + opcode + ", index: " + index + "}";
+        return mnemonic + " {opcode: " + String.format("%02x", opcode) + ", index: " + String.format("%07x", index) + "}";
     }
 }

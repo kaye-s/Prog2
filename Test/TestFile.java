@@ -22,7 +22,7 @@ public class TestFile {
                 System.out.println("Test Num: " + count);
                 System.out.println("Input: " + input[0]);
                 System.out.println("Expected: " + result);
-                System.out.print("Actual: ");
+                System.out.print("Actual:   ");
                 Main.main(input);
                 Instruction i = Main.result;
                 Assert.assertEquals(result, i.toString());
