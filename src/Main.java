@@ -3,6 +3,7 @@ public class Main {
     //GLOBAL FOR TESTING PURPOSES
     public static Instruction result;
     public static void main(String[] args) {
+        //Test commit m2
         long hex = Long.parseLong(args[0], 16);
         // Declare instruction i
         Instruction i;
