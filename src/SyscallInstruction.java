@@ -4,10 +4,10 @@ public class SyscallInstruction implements Instruction{
     private final int opcode, code, funct;
 
     //Constructor(int hex)
-    public SyscallInstruction(int hex) {
+    public SyscallInstruction(long hex) {
         funct = 0;
         code = 0;
-        opcode = (hex >> 26);
+        opcode = (int)(hex >> 26);
         mnemonic = "syscall";
     }
 

@@ -3,7 +3,7 @@ public class Main {
     //GLOBAL FOR TESTING PURPOSES
     public static Instruction result;
     public static void main(String[] args) {
-        int hex = Integer.parseInt(args[0]);
+        long hex = Long.decode("args[0]");
         // Declare instruction i
         Instruction i;
         // if syscall (inst == 0000000c) --> syscall
@@ -20,7 +20,7 @@ public class Main {
             i = new ITypeInstruction(hex);
         }
         // sysout(i.toString())
-        System.out.print(i);
+        System.out.println(i);
         result = i;
     }
 }

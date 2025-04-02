@@ -12,13 +12,13 @@ public class RTypeInstruction implements Instruction{
 //    opcode = (hex >> 26);
 //    get mnemonic based on funct
 
-    public RTypeInstruction(int hex) {
-        funct = (hex >> 0) & 0x3f;
-        shmt = (hex >> 6) & 0x1f;
-        rd = ( hex >> 11) & 0x1f;
-        rt = ( hex >> 16) & 0x1f;
-        rs = ( hex >> 21) & 0x1f;
-        opcode = (hex >> 26);
+    public RTypeInstruction(long hex) {
+        funct = (int)(hex >> 0) & 0x3f;
+        shmt = (int)(hex >> 6) & 0x1f;
+        rd = (int)( hex >> 11) & 0x1f;
+        rt = (int)( hex >> 16) & 0x1f;
+        rs = (int)( hex >> 21) & 0x1f;
+        opcode = (int)(hex >> 26);
         mnemonic = null;
     }
 
