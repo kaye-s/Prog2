@@ -34,26 +34,51 @@ public class RTypeInstruction implements Instruction{
     }
 
     //Getters - setters not needed because values never change
+    @Override
     public String getMnemonic() {
         return mnemonic;
     }
+    @Override
     public int getOpcode() {
         return opcode;
     }
+    @Override
     public int getRs() {
         return rs;
     }
+    @Override
     public int getRt() {
         return rt;
     }
+    @Override
     public int getRd() {
         return rd;
     }
+    @Override
     public int getShmt() {
         return shmt;
     }
+    @Override
     public int getFunct() {
         return funct;
+    }
+
+    @Override
+    public int getImm() {
+        System.out.println("ERROR - Rtype should not have Imm");
+        return -1;
+    }
+
+    @Override
+    public int getIndex() {
+        System.out.println("ERROR - Rtype should not have Index");
+        return -1;
+    }
+
+    @Override
+    public int getCode() {
+        System.out.println("ERROR - Rtype should not have Code");
+        return -1;
     }
 
     //toString

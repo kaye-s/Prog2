@@ -15,14 +15,58 @@ public class JTypeInstruction implements Instruction{
     }
 
     //Getters/Setters
+    @Override
     public String getMnemonic() {
         return mnemonic;
     }
     public int getOpcode() {
         return opcode;
     }
+    @Override
     public int getIndex() {
         return index;
+    }
+
+    @Override
+    public int getRd() {
+        System.out.println("ERROR - Jtype should not have Rd");
+        return -1;
+    }
+
+    @Override
+    public int getShmt() {
+        System.out.println("ERROR - Jtype should not have Shmt");
+        return -1;
+    }
+
+    @Override
+    public int getFunct() {
+        System.out.println("ERROR - Jtype should not have Funct");
+        return -1;
+    }
+
+    @Override
+    public int getCode() {
+        System.out.println("ERROR - Jtype should not have Code");
+        return -1;
+    }
+
+    @Override
+    public int getRs() {
+        System.out.println("ERROR - Jtype should not have Rs");
+        return -1;
+    }
+
+    @Override
+    public int getRt() {
+        System.out.println("ERROR - Jtype should not have Rt");
+        return -1;
+    }
+
+    @Override
+    public int getImm() {
+        System.out.println("ERROR - Jtype should not have Imm");
+        return -1;
     }
 
     //toString

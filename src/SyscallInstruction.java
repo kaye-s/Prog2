@@ -12,17 +12,56 @@ public class SyscallInstruction implements Instruction{
     }
 
     //Getters/Setters
+    @Override
     public String getMnemonic() {
         return mnemonic;
     }
     public int getOpcode() {
         return opcode;
     }
+    @Override
     public int getCode() {
         return code;
     }
+    @Override
     public int getFunct() {
         return funct;
+    }
+
+    @Override
+    public int getRd() {
+        System.out.println("ERROR - Syscall should not have Rd");
+        return -1;
+    }
+
+    @Override
+    public int getShmt() {
+        System.out.println("ERROR - Syscall should not have Shmt");
+        return -1;
+    }
+
+    @Override
+    public int getRs() {
+        System.out.println("ERROR - Syscall should not have Rs");
+        return -1;
+    }
+
+    @Override
+    public int getRt() {
+        System.out.println("ERROR - Syscall should not have Rt");
+        return -1;
+    }
+
+    @Override
+    public int getImm() {
+        System.out.println("ERROR - Syscall should not have Imm");
+        return -1;
+    }
+
+    @Override
+    public int getIndex() {
+        System.out.println("ERROR - Syscall should not have Index");
+        return -1;
     }
 
     //toString

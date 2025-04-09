@@ -35,21 +35,56 @@ public class ITypeInstruction implements Instruction{
     }
 
     //Getters
+    @Override
     public String getMnemonic() {
         return mnemonic;
     }
+    @Override
     public int getOpcode() {
         return opcode;
     }
+    @Override
     public int getRs() {
         return rs;
     }
+    @Override
     public int getRt() {
         return rt;
     }
+    @Override
     public int getImm() {
         return imm;
     }
+
+    @Override
+    public int getRd() {
+        System.out.println("ERROR - Itype should not have Rd");
+        return -1;
+    }
+
+    @Override
+    public int getShmt() {
+        System.out.println("ERROR - Itype should not have Shmt");
+        return -1;
+    }
+
+    @Override
+    public int getFunct() {
+        System.out.println("ERROR - Itype should not have Funct");
+        return -1;
+    }
+
+    @Override
+    public int getIndex() {
+        System.out.println("ERROR - Itype should not have Index");
+        return -1;
+    }
+    @Override
+    public int getCode() {
+        System.out.println("ERROR - Itype should not have Code");
+        return -1;
+    }
+
 
     //toString
     @Override
