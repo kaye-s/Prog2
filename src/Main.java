@@ -2,10 +2,10 @@
 public class Main {
     //GLOBAL FOR TESTING PURPOSES
     public static Instruction result;
+    public static int[] regs = new int[32]; //0-31
 
     public static void main(String[] args) {
         Instruction i = decode(args[0]);
-        int[] regs = new int[32]; //0-31
         //Data map
             //Labels are gonna be XXXX of address
             //Values can be string
@@ -15,11 +15,11 @@ public class Main {
 
         //Text needs an arraylist (for addressing)
         switch(i.getMnemonic()) {
-            case "":
-                // code block
+            case "add":
+                regs[i.getRd()] = i.getRs() + i.getRt();
                 break;
-            case "1":
-                // code block
+            case "addiu":
+                regs[i.getRt()] = i.getRs() + i.getImm();
                 break;
             default:
                 // code block
