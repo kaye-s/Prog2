@@ -18,4 +18,17 @@ public class TestArithmetic {
 
         Assert.assertEquals(3, Main.regs[8]);
     }
+
+    @Test
+    public void testAddiu() {
+        //t1 = 1
+        Main.regs[9] = 1;
+        //Imm 5
+
+        String[] args = {"25280005"};
+        //addiu $t0, $t1, 5
+        Main.main(args);
+
+        Assert.assertEquals(6, Main.regs[8]);
+    }
 }
