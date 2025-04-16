@@ -14,12 +14,55 @@ public class Main {
         //Find out what part of address is lui using, and use that as the label.
 
         //Text needs an arraylist (for addressing)
+
+        // switch case for 15 mnemonics:
+        //add
+        //addiu
+        //and
+        //andi
+        //beq
+        //bne
+        //j
+        //lui
+        //lw
+        //or
+        //ori
+        //slt
+        //sub
+        //sw
+        //syscall
         switch(i.getMnemonic()) {
             case "add":
                 regs[i.getRd()] = i.getRs() + i.getRt();
                 break;
             case "addiu":
                 regs[i.getRt()] = i.getRs() + i.getImm();
+                break;
+            case "and":
+                break;
+            case "andi":
+                break;
+            case "beq":
+                break;
+            case "bne":
+                break;
+            case "j":
+                break;
+            case "lui":
+                break;
+            case "lw":
+                break;
+            case "or":
+                break;
+            case "ori":
+                break;
+            case "slt":
+                break;
+            case "sub":
+                break;
+            case "sw":
+                break;
+            case "syscall":
                 break;
             default:
                 // code block
@@ -45,4 +88,6 @@ public class Main {
         }
         return(i);
     }
+
+    
 }
