@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Main {
     //GLOBAL FOR TESTING PURPOSES
     public static Instruction result;
-    public static int[] regs = new int[32]; //0-31
+    public static long[] regs = new long[32]; //0-31
     public static int textStart = 0x00400000;
     public static int dataStart = 0x10010000;
     public static int MEMORY = 100;
@@ -68,7 +68,7 @@ public class Main {
                         break;
                     case "beq":
                         if (regs[i.getRs()] == regs[i.getRt()]) {
-                            //branch
+                             //branch
                             curInst += i.getImm();
                         }
                         break;
@@ -149,10 +149,11 @@ public class Main {
         return(i);
     }
 
-    public static int lwDecode(int[] mem, Instruction i) {
-        int addr = (regs[i.getRs()] + i.getImm()) - dataStart;
-        String val = "" + mem[addr] + mem[addr+1] + mem[addr+2] + mem[addr+3];
-        return Integer.parseInt(val, 16);
+    public static long lwDecode(int[] mem, Instruction i) {
+        int addr = (int)((regs[i.getRs()] + i.getImm()) - dataStart);
+        String val = String.format("%02x", mem[addr]) + String.format("%02x", mem[addr+1] + String.format("%02x", mem[addr+2]) + String.format("%02x", mem[addr+3]));
+        System.out.println(val);
+        return Long.parseLong(val, 16);
     }
 
     
