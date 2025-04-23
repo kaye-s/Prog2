@@ -10,20 +10,37 @@ public class Main {
     public static int[] regs = new int[32]; //0-31
     public static int textStart = 0x00400000;
     public static int dataStart = 0x10010000;
+    public static int MEMORY = 100;
 
     public static void main(String[] args) {
-        //Data map
-            //Labels are gonna be XXXX of address
-            //Values can be string
-        //In data, store the first thing, then you store the whole thing up to null, then convert string from hex to string
-        // Then in map, store first thing and string
-        //Find out what part of address is lui using, and use that as the label.
+        //Initial array for mem space
+        //Read through data, store each char in its spot in the array
+        //
         try {
             File dataFile = new File(args[1]);
             File textFile = new File(args[0]);
             Scanner dataReader = new Scanner(dataFile);
             Scanner textReader = new Scanner(textFile);
             Scanner sc = new Scanner(System.in);
+            //Data
+            int[] mem = new int[MEMORY];
+            int count = 0;
+            while (dataReader.hasNextLine()) {
+                String data = dataReader.nextLine();
+
+                if(data.equals("00000000")) {
+                    break;
+                }
+                //string 0-2 as char stored
+                mem[count++] = Integer.parseInt(data.substring(0,2), 16);
+                //string 2-4
+                mem[count++] = Integer.parseInt(data.substring(2,4), 16);
+                //string 4-6
+                mem[count++] = Integer.parseInt(data.substring(4,6), 16);
+                //string 6-8
+                mem[count++] = Integer.parseInt(data.substring(6), 16);
+            }
+
 
             //Text needs an arraylist (for addressing)
             ArrayList<String> instructions = new ArrayList<>();
@@ -33,9 +50,8 @@ public class Main {
             }
             int curInst = 0;
 
-            while (curInst < instructions.size()) {
-               ++curInst;
-                Instruction i = decode(instructions.get(curInst));
+            while (curInst < instructions.size()) {;
+                Instruction i = decode(instructions.get(curInst++));
 
                 switch (i.getMnemonic()) {
                     case "add":
@@ -69,6 +85,7 @@ public class Main {
                         regs[i.getRt()] = i.getImm() | 0xFFFF;
                         break;
                     case "lw":
+                        regs[i.getRt()] = lwDecode(mem, i);
                         break;
                     case "or":
                         regs[i.getRd()] = regs[i.getRs()] | regs[i.getRt()];
@@ -130,6 +147,12 @@ public class Main {
             i = new ITypeInstruction(hex);
         }
         return(i);
+    }
+
+    public static int lwDecode(int[] mem, Instruction i) {
+        int addr = (regs[i.getRs()] + i.getImm()) - dataStart;
+        String val = "" + mem[addr] + mem[addr+1] + mem[addr+2] + mem[addr+3];
+        return Integer.parseInt(val, 16);
     }
 
     
