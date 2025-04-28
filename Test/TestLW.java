@@ -15,7 +15,8 @@ public class TestLW {
        mem[1] = 0x12;
        mem[2] = 0xcd;
        mem[3] = 0x34;
-        Assert.assertEquals(Main.lwDecode(mem, i), 0xab12cd34);
+       long result = 0xab12cd34L;
+        Assert.assertEquals(result, Main.lwDecode(mem, i));
 
     }
 }
