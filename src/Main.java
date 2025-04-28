@@ -104,6 +104,9 @@ public class Main {
                         regs[i.getRd()] = regs[i.getRs()] - regs[i.getRt()];
                         break;
                     case "sw":
+                        // sw $t1, 0($t2)
+                        // val$t2+0 = val $t1
+                        //mem[((int)regs[i.getRs()]+i.getImm())-dataStart] = regs[i.getRt()];
                         break;
                     case "syscall":
                         if(regs[2] == 1) {
@@ -151,9 +154,24 @@ public class Main {
 
     public static long lwDecode(int[] mem, Instruction i) {
         int addr = (int)((regs[i.getRs()] + i.getImm()) - dataStart);
-        String val = String.format("%02x", mem[addr]) + String.format("%02x", mem[addr+1] + String.format("%02x", mem[addr+2]) + String.format("%02x", mem[addr+3]));
+        String val = String.format("%02x", mem[addr]) + String.format("%02x", mem[addr+1]) + String.format("%02x", mem[addr+2]) + String.format("%02x", mem[addr+3]);
         System.out.println(val);
         return Long.parseLong(val, 16);
+    }
+
+    public static void swDecode(int[] mem, Instruction i){
+        long val = regs[i.getRt()];
+        // ex: ab 12 cd 34
+        int fir = (int)val >> 24 & 0xFF;
+        int sec = (int)val >> 16 & 0xFF;;
+        int thi = (int)val >> 8 & 0xFF;;
+        int fou = (int)val >> 0 & 0xFF;;
+
+        int addr = (int)(regs[i.getRs()] + i.getImm() - dataStart);
+        mem[addr] = fir;
+        mem[addr+1] = sec;
+        mem[addr+2] = thi;
+        mem[addr+3] = fou;
     }
 
     
