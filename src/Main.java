@@ -104,15 +104,40 @@ public class Main {
                         regs[i.getRd()] = regs[i.getRs()] - regs[i.getRt()];
                         break;
                     case "sw":
-                        // sw $t1, 0($t2)
-                        // val$t2+0 = val $t1
-                        //mem[((int)regs[i.getRs()]+i.getImm())-dataStart] = regs[i.getRt()];
+                        swDecode(mem, i);
                         break;
                     case "syscall":
                         if(regs[2] == 1) {
                             System.out.print(regs[4]);
                         } else if(regs[2] == 4) {
                             //a0 address of string, find in data list
+                            // store everything, first add to null byte
+                            // print backwards
+                            ArrayList<Character> str = new ArrayList<>();
+                            int addr = (int)(regs[4] - dataStart); // 4 = a0
+                            while (mem[addr] != 0) {
+                                str.add((char)mem[addr++]);
+                            }
+                            // now str has array of ab 12 cd 34 ef 56
+                            // needs to print 34cd12ab 56ef (but casted as char)
+
+                            // this pads out the array
+                            int remain = 4 - (str.size() % 4);
+                            while (remain > 0 && remain < 4){
+                                str.add('\0');
+                                --remain;
+                            }
+
+                            // print
+
+                            for (int j = 0; j <= str.size() - 4; j = j + 4){
+                                if (str.get(j) == '\0')
+                                    continue;
+                                System.out.print(str.get(j+3));
+                                System.out.print(str.get(j+2));
+                                System.out.print(str.get(j+1));
+                                System.out.print(str.get(j));
+                            }
                         } else if(regs[2] == 5) {
                             //Scanner and store in v0
                             regs[2] = sc.nextInt();
