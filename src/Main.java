@@ -17,8 +17,8 @@ public class Main {
         //Read through data, store each char in its spot in the array
         //
         try {
-            File dataFile = new File(args[1]);
             File textFile = new File(args[0]);
+            File dataFile = new File(args[1]);
             Scanner dataReader = new Scanner(dataFile);
             Scanner textReader = new Scanner(textFile);
             Scanner sc = new Scanner(System.in);
@@ -79,10 +79,12 @@ public class Main {
                         }
                         break;
                     case "j":
-                        curInst = (i.getImm() - textStart) / 4;
+                        //curInst = (i.getImm() - textStart) / 4;
+                        curInst = (i.getIndex() << 2 - textStart) / 4;
                         break;
                     case "lui":
-                        regs[i.getRt()] = i.getImm() | 0xFFFF;
+                        //regs[i.getRt()] = i.getImm() | 0xFFFF;
+                        regs[i.getRt()] = (long)i.getImm() << 16;
                         break;
                     case "lw":
                         regs[i.getRt()] = lwDecode(mem, i);
