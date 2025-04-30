@@ -40,11 +40,6 @@ public class Main {
                 //string 6-8
                 mem[count++] = Integer.parseInt(data.substring(0,2), 16);
             }
-            System.out.println("MEMORY START");
-            for(int j = 0; j < MEMORY; ++j) {
-                System.out.print((char)mem[j]);
-            }
-            System.out.println("\nMEMORY END");
 
 
 
@@ -87,7 +82,7 @@ public class Main {
                         break;
                     case "j":
                         //curInst = (i.getImm() - textStart) / 4;
-                        curInst = (i.getIndex() << 2 - textStart) / 4;
+                        curInst = ((i.getIndex() << 2) - textStart) / 4;
                         break;
                     case "lui":
                         //regs[i.getRt()] = i.getImm() | 0xFFFF;
@@ -125,7 +120,6 @@ public class Main {
                             ArrayList<Character> str = new ArrayList<>();
                             int addr = (int)(regs[4] - dataStart); // 4 = a0
                             if(mem[addr] == '\0') ++addr;
-                            System.out.println(addr);
                             while(mem[addr] != '\0') {
                                 str.add((char)mem[addr++]);
                             }
