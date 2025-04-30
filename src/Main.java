@@ -40,6 +40,11 @@ public class Main {
                 //string 6-8
                 mem[count++] = Integer.parseInt(data.substring(6), 16);
             }
+            System.out.println("MEMORY START");
+            for(int j = 0; j < MEMORY; ++j) {
+                System.out.print(String.format("%02x", mem[j]));
+            }
+            System.out.println("\nMEMORY END");
 
 
             //Text needs an arraylist (for addressing)
@@ -117,9 +122,28 @@ public class Main {
                             // print backwards
                             ArrayList<Character> str = new ArrayList<>();
                             int addr = (int)(regs[4] - dataStart); // 4 = a0
-                            while (mem[addr] != 0) {
-                                str.add((char)mem[addr++]);
+                            System.out.println(addr);
+
+                            while(true) {
+                                if(mem[addr+3] == 0) {
+                                    break;
+                                }
+                                str.add((char)mem[addr+3]);
+                                if(mem[addr+2] == 0) {
+                                    break;
+                                }
+                                str.add((char)mem[addr+2]);
+                                if(mem[addr+1] == 0) {
+                                    break;
+                                }
+                                str.add((char)mem[addr+1]);
+                                if(mem[addr] == 0) {
+                                    break;
+                                }
+                                str.add((char)mem[addr]);
+                                addr += 4;
                             }
+
                             // now str has array of ab 12 cd 34 ef 56
                             // needs to print 34cd12ab 56ef (but casted as char)
 
@@ -131,13 +155,13 @@ public class Main {
                             }
 
                             // print
+                            //Ente
+                            //e t n E
+                            //E n t e
 
-                            for (int j = 0; j <= str.size() - 4; j = j + 4){
+                            for (int j = 0; j < str.size(); ++j){
                                 if (str.get(j) == '\0')
                                     continue;
-                                System.out.print(str.get(j+3));
-                                System.out.print(str.get(j+2));
-                                System.out.print(str.get(j+1));
                                 System.out.print(str.get(j));
                             }
                         } else if(regs[2] == 5) {
