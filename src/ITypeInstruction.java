@@ -11,7 +11,11 @@ public class ITypeInstruction implements Instruction{
 //    opcode = (hex >> 26) & bx111111;
 //    mnemonic = from opcode
     public ITypeInstruction(long hex) {
-        imm= (int)(hex >> 0) & 0xFFFF;
+        if (((int)(hex >> 0) & 0xFFFF) >> 15 == 1){
+            imm = ((int)(hex >> 0) & 0xFFFF) | 0xFFFF0000;
+        } else {
+            imm = (int) (hex >> 0) & 0xFFFF;
+        }
         rt = (int)(hex >> 16) & 0x1f;
         rs = (int)(hex >> 21) & 0x1f;
         opcode = (int)(hex >> 26) & 0x3f;
