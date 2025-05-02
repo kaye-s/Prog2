@@ -10,7 +10,7 @@ public class Main {
     public static long[] regs = new long[32]; //0-31
     public static int textStart = 0x00400000;
     public static int dataStart = 0x10010000;
-    public static int MEMORY = 100;
+    public static int MEMORY = 200;
 
     public static void main(String[] args) {
         //Initial array for mem space
