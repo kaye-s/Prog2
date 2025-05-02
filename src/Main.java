@@ -185,10 +185,10 @@ public class Main {
         int fou = (int)val >> 0 & 0xFF;;
 
         int addr = (int)(regs[i.getRs()] + i.getImm() - dataStart);
-        mem[addr] = fir;
-        mem[addr+1] = sec;
-        mem[addr+2] = thi;
-        mem[addr+3] = fou;
+        mem[addr+3] = fir;
+        mem[addr+2] = sec;
+        mem[addr+1] = thi;
+        mem[addr] = fou;
     }
 
     
